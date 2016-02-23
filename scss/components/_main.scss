@@ -3,48 +3,45 @@
   width: 28px;
   height: 30px;
   margin: 30px auto 10px;
+  span {
+    position: relative;
+    display: block;
+    &:after, &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -9px;
+    }
+    &:after {
+      top: 9px;
+    }
+  }
+  span, span:after, span:before {
+    width: 100%;
+    height: 5px;
+    background-color: #888;
+    transition: all 0.3s;
+    backface-visibility: hidden;
+    border-radius: 2px;
+  }
+  &.on{
+    span{
+      background-color: transparent;
+      &:before{
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      &:after{
+        transform: rotate(-45deg) translate(7px, -8px);
+      }
+    }
+  }
+  &.on + #menu{
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
-#toggle span:after,
-#toggle span:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -9px;
-}
-#toggle span:after{
-  top: 9px;
-}
-#toggle span {
-  position: relative;
-  display: block;
-}
 
-#toggle span,
-#toggle span:after,
-#toggle span:before {
-  width: 100%;
-  height: 5px;
-  background-color: #888;
-  transition: all 0.3s;
-  backface-visibility: hidden;
-  border-radius: 2px;
-}
-
-/* on activation */
-#toggle.on span {
-  background-color: transparent;
-}
-#toggle.on span:before {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-#toggle.on span:after {
-  transform: rotate(-45deg) translate(7px, -8px);
-}
-#toggle.on + #menu {
-  opacity: 1;
-  visibility: visible;
-}
 
 /* menu appearance*/
 #menu {
@@ -62,17 +59,18 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity .4s;
+  &:after {
+    position: absolute;
+    top: -15px;
+    left: 95px;
+    content: "";
+    display: block;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 20px solid white;
+  }
 }
-#menu:after {
-  position: absolute;
-  top: -15px;
-  left: 95px;
-  content: "";
-  display: block;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 20px solid white;
-}
+
 ul, li, li a {
   list-style: none;
   display: block;
@@ -84,14 +82,21 @@ li a {
   color: #888;
   text-decoration: none;
   transition: all .2s;
+  &:hover, &:focus {
+    background: #1ABC9C;
+    color: #fff;
+  }
 }
-li a:hover,
-li a:focus {
-  background: #1ABC9C;
-  color: #fff;
-}
-
 
 /* demo styles */
-body { margin-top: 3em; background: #eee; color: #555; font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif; }
-p, p a { font-size: 12px;text-align: center; color: #888; }
+body {
+  margin-top: 3em;
+  background: #eee;
+  color: #555;
+  font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+p, p a { 
+  font-size: 12px;
+  text-align: center;
+  color: #888; }
